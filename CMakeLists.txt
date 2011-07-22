@@ -1,6 +1,7 @@
 cmake_minimum_required (VERSION 2.6)
 project (RemoteAdmin)
 
+#Testinbg branch
 #add_subdirectory(WTtest)
 
 SET(EXECUTABLE_OUTPUT_PATH ./Binaries)

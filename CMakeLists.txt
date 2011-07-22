@@ -1,14 +1,14 @@
 cmake_minimum_required (VERSION 2.6)
-project (WTtest)
+project (RemoteAdmin)
 
 #add_subdirectory(WTtest)
 
 SET(EXECUTABLE_OUTPUT_PATH ./Binaries)
-SET(LIBRARY_OUTPUT_PATH lib)
-SET(PROJECT_FOLDER ../FAS)
+#SET(LIBRARY_OUTPUT_PATH lib)
+SET(PROJECT_FOLDER ../remote-admin)
 
-SET(WT_INCLUDE /home/jlle/develop/wt/install_wt_3_1_9_boost_1_42_0/include/)
-SET(WT_LIB_DIR /home/jlle/develop/wt/install_wt_3_1_9_boost_1_42_0/lib/)
+SET(WT_INCLUDE /home/jlle/develop/wt/install_wt_3_1_10_boost_1_42_0/include/)
+SET(WT_LIB_DIR /home/jlle/develop/wt/install_wt_3_1_10_boost_1_42_0/lib/)
 SET(BOOST_INCLUDE /home/jlle/develop/boost/stage_boost_1_42_0/include/)
 SET(BOOST_LIB_DIR /home/jlle/develop/boost/stage_boost_1_42_0/lib/)
 
@@ -18,7 +18,7 @@ include_directories( ${WT_INCLUDE} ${BOOST_INCLUDE})
                                            #and better use find_library
 #set_directory_properties(PROPERTIES INCLUDE_DIRECTORIES true)
 add_custom_target(static_files ALL cp -r ${PROJECT_FOLDER}/css ${EXECUTABLE_OUTPUT_PATH} SOURCES css/style.css)
-#add_custom_target(css ALL SOURCES style.css)
+#add_custom_target(css ALL SOURCES css/style.css)
 
 
 #find_library(WT_LIBS wt)

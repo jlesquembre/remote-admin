@@ -14,6 +14,7 @@
 #include <Wt/WDialog>
 #include <Wt/WTree>
 #include <Wt/WTreeNode>
+#include <Wt/WAnimation>
 
 #include <boost/filesystem/path.hpp>
 
@@ -90,6 +91,12 @@ FtpUser::FtpUser(std::string name, WContainerWidget *parent)
 
     //deleteButton->set
 
+    //dropDownBody->hide();
+    //WAnimation *anim = new WAnimation();
+    //WAnimation fade(WAnimation::Fade, WAnimation::Linear, 250);
+    //dropDownBody->setTransitionAnimation(fade);
+    //dropDownBody->animateHide(fade);
+    //dropDownBody->setHidden(true,fade);//,Wt::WAnimation::SlideInFromTop);
     dropDownBody->hide();
 
     //new WBreak(changePassArea);
@@ -192,6 +199,15 @@ void FtpUser::openCloseUser()
     if(dropDownBody->isVisible())   //close it
         {
             dropDownHead->removeStyleClass("selected");
+
+            /**** **/
+            //WAnimation fade(WAnimation::SlideInFromTop , WAnimation::Linear, 250);
+            //dropDownBody->setTransitionAnimation(fade);
+            //dropDownBody->animateHide(fade);
+            //dropDownBody->setHidden(true,fade);
+
+            /*******/
+
             dropDownBody->hide();
             arrow->setStyleClass("arrow-down");
 

@@ -34,7 +34,7 @@ private:
     Wt::WLineEdit *pass, *repass;
     Wt::WDialog *addFolderDialog;
 
-    OptionMap *options;
+    OptionMap *options;    
 
     void openCloseUser();
     void changePassword();

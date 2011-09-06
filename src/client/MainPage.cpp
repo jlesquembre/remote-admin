@@ -9,6 +9,7 @@
 #include "../server/logindb.h"
 #include "../server/optionmap.h"
 #include "../server/treenodefolder.h"
+#include "../server/autofscontroller.h"
 #include "ftpusercontroller.h"
 #include <Wt/WApplication>
 #include <Wt/WPushButton>
@@ -59,6 +60,8 @@ using namespace Wt;
 MainPage::MainPage( const WEnvironment& env)    
     : WApplication(env)
 {
+
+
 
     /*
     boost::property_tree::ini_parser::read_ini;
@@ -163,6 +166,9 @@ MainPage::MainPage( const WEnvironment& env)
      TreeNodeFolder *root2 = new TreeNodeFolder(path);//, folderIcon);
      tree2->setTreeRoot(root2);
 
+
+     //cerr<<"hello"<<endl;
+     //AutofsController *a = new AutofsController();
 
 
 }

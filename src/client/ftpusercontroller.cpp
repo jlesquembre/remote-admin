@@ -92,6 +92,8 @@ FtpUserController::FtpUserController( WContainerWidget *parent)
 
         }
 
+    _autofsc = new AutofsController();
+
 }
 
 
@@ -183,6 +185,7 @@ void FtpUserController::addFtpUser()
         }
 
     logindb->add(newFtpUser->text().toUTF8(),newFtpPass->text().toUTF8());
+    _autofsc->addEntry(newFtpUser->text().toUTF8());
     new FtpUser(newFtpUser->text().toUTF8(),this);
     this->showNotification(messageType::SUCCESS, newFtpUser->text() + " was added!");
     this->hideDialog();
@@ -257,6 +260,7 @@ void FtpUserController::wDialogAddFtpUser()
 void FtpUserController::deleteFtpUser(std::string name)
 {
     logindb->del(name);
+    _autofsc->deleteEntry(name);
 }
 
 void FtpUserController::changeFtpPassword(std::string name, std::string pass)

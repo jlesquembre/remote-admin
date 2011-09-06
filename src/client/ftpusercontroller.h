@@ -2,6 +2,7 @@
 #define FTPUSERCONTROLLER_H
 
 #include "../server/logindb.h"
+#include "../server/autofscontroller.h"
 #include "./ftpuser.h"
 #include <Wt/WContainerWidget>
 #include <Wt/WText>
@@ -33,6 +34,8 @@ public:
     void deleteFtpUser(std::string);
 private:
     LoginDB *logindb;
+    AutofsController *_autofsc;
+
     Wt::WText *notificationArea, *error;
     Wt::WDialog *addFtpUSerDialog;
     Wt::WLineEdit *newFtpUser, *newFtpPass, *newFtpRepass;

@@ -5,11 +5,14 @@
 #include <boost/filesystem/exception.hpp>
 #include <boost/lexical_cast.hpp>
 #include <iostream>
+#include <string>
 #include <time.h>
 
 #include <Wt/WIconPair>
 #include <Wt/WStringUtil>
 #include <Wt/WText>
+#include <Wt/WTree>
+#include <Wt/WTreeNode>
 
 using namespace Wt;
 //namespace fs = boost::filesystem;
@@ -49,6 +52,27 @@ TreeNodeFolder::TreeNodeFolder(const boost::filesystem::path& path)
 
     this->addStyleClass("treenodefolder");
     this->setLoadPolicy(WTreeNode::NextLevelLoading);
+
+    //if(path.leaf().compare("aa") == 0)
+    //    this->setNodeVisible(false);
+
+    if(this->hasParent())
+    {
+        if(this->parentNode()->label()->text().toUTF8().compare("/") == 0)
+        {
+            if(path.leaf().compare("mnt") != 0 && path.leaf().compare("home") != 0)
+            {
+                this->setNodeVisible(false);
+            }
+        }
+
+    }
+
+    if (path.string().compare("/home") == 0 )
+    {
+
+    }
+
 
    /* if (boost::filesystem::exists(path)) {
         if (!boost::filesystem::is_directory(path)) {
@@ -115,3 +139,24 @@ bool TreeNodeFolder::expandable()
         return WTreeNode::expandable();
 }
 
+std::string TreeNodeFolder::getCompletePath()
+{
+    //std::string;
+    WString path("");
+
+
+    WTreeNode *root = tree()->treeRoot();
+    WTreeNode *node = this;
+    while(node != root)
+    {
+        path = "/" + node->label()->text() + path;
+        node = node->parentNode();
+    }
+
+
+    return path.toUTF8();
+
+
+
+
+}

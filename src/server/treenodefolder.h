@@ -2,6 +2,7 @@
 #define TREENODEFOLDER_H
 #include <Wt/WTreeNode>
 #include <boost/filesystem/path.hpp>
+#include <string>
 
 
 class TreeNodeFolder : public Wt::WTreeNode
@@ -11,12 +12,13 @@ public:
     //void expand();
 
     TreeNodeFolder(const boost::filesystem::path& path);
+    std::string getCompletePath();
 
 private:
     boost::filesystem::path path_;
 
     virtual void populate();
-    virtual bool expandable();
+    virtual bool expandable();    
     //static Wt::WIconPair *createIcon(const boost::filesystem::path& path);
 
 

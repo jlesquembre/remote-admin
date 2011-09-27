@@ -49,6 +49,23 @@ padding-left:50px;
 /*height:100%;*/
 }
 
+.sharedfoldertext{
+  display:block;  
+  font-weight:bold;
+  font-size:16px;
+  
+  
+}
+
+.sharefolderarea{
+  padding:15px 0px;
+}
+
+.checkboxwritable{
+  padding-right:15px;
+  padding-left:15px;
+}
+
 /*Not used*/
 .fade { /*--Transparent background layer--*/
 	/*display: none; --hidden by default--*/
@@ -485,6 +502,9 @@ background-color:yellow;
 .small {
         font-size: 11px;
         padding: .2em 1em .275em;
+}
+.xsmall{
+  padding: 1px;
 }
 
 /* color styles

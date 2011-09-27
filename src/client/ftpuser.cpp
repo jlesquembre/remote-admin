@@ -15,11 +15,15 @@
 #include <Wt/WTree>
 #include <Wt/WTreeNode>
 #include <Wt/WAnimation>
+#include <Wt/WCheckBox>
 
 #include <boost/filesystem/path.hpp>
 
 #include <vector>
 #include <string>
+#include <map>
+#include <string>
+#include <set>
 #include <boost/lexical_cast.hpp>
 
 using namespace Wt;
@@ -130,11 +134,56 @@ FtpUser::FtpUser(std::string name, WContainerWidget *parent)
 
 }
 
+WContainerWidget* FtpUser::createSharedFolderBlock(std::string path, bool writable)
+{
+    WContainerWidget *shareFolderArea = new WContainerWidget();
+    shareFolderArea->setStyleClass("sharefolderarea");
+    WPushButton *deleteButton = new WPushButton("",shareFolderArea);
+    deleteButton->setStyleClass("button red crossimg xsmall");
+
+    WCheckBox *w1 = new WCheckBox("Writable", shareFolderArea);
+    writable ?  w1->setChecked() : w1->setUnChecked();
+    w1->setStyleClass("checkboxwritable");
+
+    WText *t = new WText(path,shareFolderArea );
+    //t->setInline(false);
+
+    return shareFolderArea;
+
+}
+
 WContainerWidget* FtpUser::createFoldersBlock()
 {
-    WContainerWidget *addFolderBlock = new WContainerWidget(this);
+    addFolderBlock = new WContainerWidget(this);
     addFolderBlock->setStyleClass("addfolderblock");
-    WPushButton *addFolderButton = new WPushButton("Add new folder", addFolderBlock);
+
+    WText *text = new WText("List of shared folders", addFolderBlock);
+    text->setStyleClass("sharedfoldertext");
+
+    autofs = new AutoFs(name->text().toUTF8());
+
+    std::map<std::string,bool> map = autofs->getFolders();
+
+    //std::map<std::string,bool>::iterator it;
+    typedef std::map<std::string,bool>::const_iterator CI;
+
+    for(CI it = map.begin(); it!=map.end(); it++)
+    {
+        /*WContainerWidget *shareFolderArea = new WContainerWidget(addFolderBlock);
+        shareFolderArea->setStyleClass("sharefolderarea");
+        WPushButton *deleteButton = new WPushButton("",shareFolderArea);
+        deleteButton->setStyleClass("button red crossimg xsmall");
+
+        WCheckBox *w1 = new WCheckBox("Writable", shareFolderArea);        
+        it->second ?  w1->setChecked() : w1->setUnChecked();
+        w1->setStyleClass("checkboxwritable");
+
+        WText *t = new WText(it->first,shareFolderArea );*/
+        addFolderBlock->addWidget(createSharedFolderBlock(it->first, it->second));
+
+    }
+
+    WPushButton *addFolderButton = new WPushButton("Share new folder", addFolderBlock);
     addFolderButton->setStyleClass("button white");
     //new WPushButton("Add new folder", addFolderBlock);
 
@@ -146,21 +195,22 @@ WContainerWidget* FtpUser::createFoldersBlock()
 
     WContainerWidget *buttonsContainer = new WContainerWidget(addFolderDialog->contents());
     buttonsContainer->setStyleClass("btncont");
-    WPushButton *ok = new WPushButton("Add folder",buttonsContainer);
+    WPushButton *ok = new WPushButton("Share folder",buttonsContainer);
     ok->setStyleClass("button white");
     WPushButton *cancel = new WPushButton("Cancel",buttonsContainer);
     cancel->setStyleClass("button white");
 
     WContainerWidget *treeCont = new WContainerWidget(addFolderDialog->contents());
     treeCont->setStyleClass("tree_style");
-    WTree *tree = new WTree(treeCont);
+    /*WTree */tree = new WTree(treeCont);
     tree->setSelectionMode(Wt::SingleSelection);
-    boost::filesystem::path path("/home/jlle/Descargas");
+    boost::filesystem::path path("/");
     TreeNodeFolder *root = new TreeNodeFolder(path);//, folderIcon);
     tree->setTreeRoot(root);
 
     addFolderButton->clicked().connect(this, &FtpUser::showDialog);
     cancel->clicked().connect(this,&FtpUser::hideDialog);
+    ok->clicked().connect(this,&FtpUser::addSharedFolder);
 }
 
 void FtpUser::showDialog()
@@ -173,6 +223,29 @@ void FtpUser::showDialog()
 void FtpUser::hideDialog()
 {
     addFolderDialog->hide();
+
+}
+
+void FtpUser::addSharedFolder()
+{
+
+    //addFolderBlock->insertWidget(1,);
+
+    WTree::WTreeNodeSet set = tree->selectedNodes();
+
+    //typedef map<string,string>::const_iterator CI;
+
+    for(WTree::WTreeNodeSet::const_iterator it = set.begin(); it!= set.end(); it++)
+    {
+        std::string path = ((TreeNodeFolder*)(*it))->getCompletePath();//(*it)->label ()->text().toUTF8();
+        autofs->addFolder(path, false);
+    }
+
+    //addFolderBlock = NULL;
+    //createFoldersBlock();
+
+    addFolderDialog->hide();
+    //createFoldersBlock();
 
 }
 

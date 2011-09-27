@@ -3,6 +3,7 @@
 
 #include "../server/logindb.h"
 #include "../server/optionmap.h"
+#include "../server/autofs.h"
 #include <Wt/WApplication>
 #include <Wt/WPushButton>
 #include <Wt/WSignal>
@@ -11,6 +12,7 @@
 #include <Wt/WContainerWidget>
 #include <Wt/WLineEdit>
 #include <Wt/WDialog>
+#include <Wt/WTree>
 #include <vector>
 #include <string>
 
@@ -30,11 +32,13 @@ private:
 
     //std::string name;
     Wt::WText *name, *error;
-    Wt::WContainerWidget *changePassArea, *dropDownBody, *dropDownHead, *dropDown, *arrow;
+    Wt::WContainerWidget *changePassArea, *dropDownBody, *dropDownHead, *dropDown, *arrow, *addFolderBlock;
     Wt::WLineEdit *pass, *repass;
     Wt::WDialog *addFolderDialog;
+    Wt::WTree *tree;
 
-    OptionMap *options;    
+    OptionMap *options;
+    AutoFs *autofs;
 
     void openCloseUser();
     void changePassword();
@@ -42,8 +46,10 @@ private:
     void createConfFile();
 
     Wt::WContainerWidget *createFoldersBlock();
+    Wt::WContainerWidget *createSharedFolderBlock(std::string, bool);
     void showDialog();
     void hideDialog();
+    void addSharedFolder();
 
 
 

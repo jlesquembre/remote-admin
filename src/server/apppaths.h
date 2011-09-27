@@ -7,7 +7,8 @@ class AppPaths
 {
 public:
     //AppPaths();
-    static const std::string autoMasterPath ;
+    static const std::string autoMasterPath;
+    static const std::string autoUsersPath;
     //static const std::string LOGFILENAME;
 
 };

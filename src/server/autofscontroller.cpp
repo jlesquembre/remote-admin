@@ -61,12 +61,12 @@ void AutofsController::startParse()
 
     string line;
     while(_instream.good())
-        {
-            getline(_instream, line);
-            _outstream << line << endl;
-            if(line.compare(startSection) == 0 )
-                return;
-        }
+    {
+        getline(_instream, line);
+        _outstream << line << endl;
+        if(line.compare(startSection) == 0 )
+            return;
+    }
 
 }
 

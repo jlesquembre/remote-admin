@@ -18,6 +18,7 @@
 #include <Wt/WCheckBox>
 
 #include <boost/filesystem/path.hpp>
+#include <boost/bind.hpp>
 
 #include <vector>
 #include <string>
@@ -146,10 +147,36 @@ WContainerWidget* FtpUser::createSharedFolderBlock(std::string path, bool writab
     w1->setStyleClass("checkboxwritable");
 
     WText *t = new WText(path,shareFolderArea );
-    //t->setInline(false);
+    //t->setInline(false);    
+
+    deleteButton->clicked().connect( boost::bind(&FtpUser::removeSharedFolder,boost::ref(*this), shareFolderArea, path));
+    w1->changed().connect(boost::bind(&FtpUser::sharedFolderWritable,boost::ref(*this), path, w1) );
 
     return shareFolderArea;
 
+}
+
+void FtpUser::removeSharedFolder(WContainerWidget* widgetToRemove, std::string path)
+{
+    addFolderBlock->removeWidget(widgetToRemove);
+    autofs->removeFolder(path);
+
+//    std::string s1="/mnt";
+//    std::string s2="/mnt/cifs";
+
+//    if(s1.compare(s2)==0)
+//        std::cout<<"S1 = S2"<<endl;
+//    if(s2.compare(s1)==0)
+//        std::cout<<"S2 = S1"<<endl;
+
+
+}
+
+void FtpUser::sharedFolderWritable(std::string &path, WCheckBox *writable )
+{
+    std::cout << "WWWWW->" << writable->isChecked() <<std::endl;
+    autofs->removeFolder(path);
+    autofs->addFolder(path, writable->isChecked());
 }
 
 WContainerWidget* FtpUser::createFoldersBlock()
@@ -193,6 +220,13 @@ WContainerWidget* FtpUser::createFoldersBlock()
     addFolderDialog->contents()->addStyleClass("add_folder_dialog_contents");
     addFolderDialog->setStyleClass("add_folder_dialog");
 
+
+    Wt::WCheckBox *showHiddenFolders = new WCheckBox("Show hidden folders",addFolderDialog->contents());
+    //showHiddenFolders->changed().connect(boost::bind(&FtpUser::showHideHiddenFolders,boost::ref(*this), showHiddenFolders));
+    //Mirar signal slots, conectar cambio con tree ;-)
+
+
+
     WContainerWidget *buttonsContainer = new WContainerWidget(addFolderDialog->contents());
     buttonsContainer->setStyleClass("btncont");
     WPushButton *ok = new WPushButton("Share folder",buttonsContainer);
@@ -205,12 +239,26 @@ WContainerWidget* FtpUser::createFoldersBlock()
     /*WTree */tree = new WTree(treeCont);
     tree->setSelectionMode(Wt::SingleSelection);
     boost::filesystem::path path("/");
-    TreeNodeFolder *root = new TreeNodeFolder(path);//, folderIcon);
+    TreeNodeFolder *root = new TreeNodeFolder(path,false);//, folderIcon);
     tree->setTreeRoot(root);
 
     addFolderButton->clicked().connect(this, &FtpUser::showDialog);
     cancel->clicked().connect(this,&FtpUser::hideDialog);
     ok->clicked().connect(this,&FtpUser::addSharedFolder);
+
+
+
+    showHiddenFolders->changed().connect(boost::bind(&TreeNodeFolder::test,boost::ref(*root), showHiddenFolders));
+
+}
+
+void FtpUser::showHideHiddenFolders(WCheckBox *showHidden)
+{
+
+    std::cout << std::boolalpha ;
+
+    //std::cout << "Real Value: " << showHiddenFolders->isChecked() << std::endl;
+    std::cout << "Passed is:  " << showHidden->isChecked() << std::endl;
 }
 
 void FtpUser::showDialog()
@@ -239,19 +287,25 @@ void FtpUser::addSharedFolder()
     {
         std::string path = ((TreeNodeFolder*)(*it))->getCompletePath();//(*it)->label ()->text().toUTF8();
         autofs->addFolder(path, false);
+        //addFolderBlock->addWidget(createSharedFolderBlock(path,false));
+        addFolderBlock->insertWidget(addFolderBlock->count()-1, createSharedFolderBlock(path,false));
     }
 
     //addFolderBlock = NULL;
     //createFoldersBlock();
 
     addFolderDialog->hide();
+
+
+
     //createFoldersBlock();
 
 }
 
 FtpUser::~FtpUser()
 {
-    FtpUser::openUser = NULL;    
+    FtpUser::openUser = NULL;
+
 }
 
 void FtpUser::openCloseUser()

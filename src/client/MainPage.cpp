@@ -159,12 +159,12 @@ MainPage::MainPage( const WEnvironment& env)
 
      root->expand();*/
 
-     Wt::WTree *tree2 = new Wt::WTree(this->root());
-     tree2->setSelectionMode(Wt::SingleSelection);
-     //tree2->setStyleClass("aaa");
-     boost::filesystem::path path("/home/jlle/Descargas");
-     TreeNodeFolder *root2 = new TreeNodeFolder(path);//, folderIcon);
-     tree2->setTreeRoot(root2);
+//     Wt::WTree *tree2 = new Wt::WTree(this->root());
+//     tree2->setSelectionMode(Wt::SingleSelection);
+//     //tree2->setStyleClass("aaa");
+//     boost::filesystem::path path("/home/jlle/Descargas");
+//     TreeNodeFolder *root2 = new TreeNodeFolder(path);//, folderIcon);
+//     tree2->setTreeRoot(root2);
 
 
      //cerr<<"hello"<<endl;

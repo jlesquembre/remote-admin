@@ -7,10 +7,11 @@
 class AutoFs
 {
 public:
-    AutoFs(std::string);
+    AutoFs(std::string);    
     std::map<std::string, bool> getFolders();
     void addFolder(std::string, bool);
     void removeFolder(std::string);
+    void deleteFile();
 
 private:
 

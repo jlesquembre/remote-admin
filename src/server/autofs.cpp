@@ -6,8 +6,10 @@
 #include <fstream>
 #include <utility>
 #include <map>
+#include <iostream>
 #include <boost/foreach.hpp>
 #include <boost/tokenizer.hpp>
+#include <boost/filesystem.hpp>
 
 using namespace std;
 
@@ -45,6 +47,12 @@ AutoFs::AutoFs(string userName)
     stream.close();
 }
 
+void AutoFs::deleteFile()
+{
+    boost::filesystem::remove(_autoFile);
+
+}
+
 
 std::map<std::string, bool> AutoFs::getFolders()
 {
@@ -70,9 +78,14 @@ void AutoFs::addFolder(std::string folder, bool writable)
         else
             stream << name << " " << rmode << " :bindfs#" << folder << endl;*/
 
-        stream << name << " " << (writable?wmode:rmode) << " :bindfs#" << folder << endl;
+        //If is this first entry, don't write a end of line
+        if(_folders.size() != 0)
+            stream << endl;
 
-    _folders[folder] = writable;
+        stream << name << " " << (writable?wmode:rmode) << " :bindfs#" << folder;
+
+
+        _folders[folder] = writable;
 
     }
 
@@ -89,8 +102,20 @@ void AutoFs::removeFolder(std::string folder)
     while(inpstream.good())
     {
         getline(inpstream, line);
-        if(line.find(folder) == string::npos )
-            outstream << line << endl;
+        if(!line.empty())
+        {
+            int pos = line.find(":bindfs#");
+            string path = line.substr(pos+8, string::npos);
+            //cout<<"AAA-> " << line.substr(pos+8,string::npos)<<endl;
+            //cout<<"BBB-> " << folder<<endl;
+            if(path != folder )
+                outstream << line << endl;
+
+
+
+            //if(line.find(folder) == string::npos && !line.empty())
+        //   outstream << line << endl;
+        }
     }
     inpstream.close();
     outstream.close();

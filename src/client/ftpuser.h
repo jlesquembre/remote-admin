@@ -13,6 +13,7 @@
 #include <Wt/WLineEdit>
 #include <Wt/WDialog>
 #include <Wt/WTree>
+#include <Wt/WCheckBox>
 #include <vector>
 #include <string>
 
@@ -50,6 +51,9 @@ private:
     void showDialog();
     void hideDialog();
     void addSharedFolder();
+    void showHideHiddenFolders(Wt::WCheckBox*);
+    void removeSharedFolder(Wt::WContainerWidget*, std::string);
+    void sharedFolderWritable(std::string&,Wt::WCheckBox*);
 
 
 

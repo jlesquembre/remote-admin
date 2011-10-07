@@ -27,7 +27,7 @@ enum Enum
 class FtpUserController : public Wt::WContainerWidget
 {
 public:
-    FtpUserController(Wt::WContainerWidget *parent);
+    FtpUserController(Wt::WContainerWidget *parent = 0);
     void showNotification(messageType::Enum, Wt::WString);
     void hideNotification();
     void changeFtpPassword(std::string, std::string);

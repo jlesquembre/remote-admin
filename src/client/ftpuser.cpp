@@ -384,6 +384,7 @@ void FtpUser::deleteUser()
     parent->deleteFtpUser(this->name->text().toUTF8());
     parent->showNotification(messageType::SUCCESS, name->text() + " was removed!!");
     options->deleteConfFile();
+    autofs->deleteFile();
     delete this;
 
 }

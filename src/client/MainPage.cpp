@@ -21,6 +21,11 @@
 #include <Wt/WIconPair>
 #include <Wt/WTree>
 #include <Wt/WTreeNode>
+#include <Wt/WTabWidget>
+#include <Wt/WMenu>
+#include <Wt/WStackedWidget>
+#include <Wt/WHBoxLayout>
+#include <Wt/WVBoxLayout>
 
 #include <stdlib.h>
 
@@ -111,21 +116,39 @@ MainPage::MainPage( const WEnvironment& env)
 
 
 
-    new FtpUserController(root());
+    //new FtpUserController(root());
+    //new FtpUserController(examples);
 
-    /*showb = new WPushButton("Show",root());
-    hideb = new WPushButton("Hide",root());
+    Wt::WHBoxLayout *mainLayout = new Wt::WHBoxLayout(root());
+    mainLayout->setContentsMargins(0, 0, 0, 0);
 
-    showb->clicked().connect(this,&MainPage::show);
-    hideb->clicked().connect(this,&MainPage::hide);
+    Wt::WStackedWidget *contents = new Wt::WStackedWidget(0);
+    contents->setOverflow(WContainerWidget::OverflowAuto);
+    contents->setStyleClass("contents");
+    contents->setPositionScheme(Relative); // without needs testing on IE...
 
-    new WBreak(root());
+    // create a menu
+    Wt::WMenu *menu = new Wt::WMenu(contents, Wt::Vertical, 0);
+    menu->setRenderAsList(true);
+    menu->addStyleClass("menu");
 
-    user = new WLineEdit(root()); new WBreak(root());
-    pass = new WLineEdit(root()); new WBreak(root());
-    WPushButton *save = new WPushButton("Save to DB",root());
 
-    save->clicked().connect(this, &MainPage::saveToDb);*/
+    Wt::WTabWidget *ftpTabs = new Wt::WTabWidget();
+
+
+    mainLayout->addWidget(menu);
+    mainLayout->addWidget(contents,1);
+    //layout->setResizable(0,true);
+
+    // add items using the default lazy loading policy.
+    menu->addItem("FTP", ftpTabs);
+    menu->addItem("Samba", new Wt::WText("Not yet available"));
+
+
+    ftpTabs->addTab(new WText("aa"), "General options");
+    ftpTabs->addTab(new FtpUserController(), "Users management");
+
+
 
     /*********
       Test for options file

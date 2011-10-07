@@ -1,3 +1,147 @@
+body, html {    
+    height: 100%;
+    width: 100%;
+    margin: 0px; padding: 0px; border: none;
+    overflow: hidden;
+}
+
+/*.menu * .item {
+  cursor: pointer; cursor: hand;
+  color: blue;
+  text-decoration: underline;
+}
+
+.menu * .itemselected {
+  color: blue;
+  text-decoration: underline;
+  font-weight: bold;  
+}
+
+.menu {
+  overflow: auto;
+}
+
+.menu li {
+  display: inline;
+}
+
+.menu span {
+  display: block; float: left;
+}
+
+.menu a.item span {
+  cursor: pointer; cursor: hand;
+  color: blue;
+  margin-right: 5px;
+}
+
+.menu span.item {
+  color: gray;
+  margin-right: 5px;
+}
+
+.menu a.itemselected span {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+  margin-right: 5px;
+}
+
+.menu span.itemselected {
+  color: gray;
+  font-weight: bold;
+  text-decoration: none;
+  margin-right: 5px;
+}
+
+.menu .citem a.label span {
+  cursor: pointer; cursor: hand;
+  color: blue;
+}
+
+.menu .citem span.label {
+  color: gray;
+}
+
+.menu .citemselected a.label span {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.menu .citemselected span.label {
+  color: gray;
+  font-weight: bold;
+  text-decoration: none;
+}
+*/
+
+div.contents {
+    padding: 6px;
+}
+
+ul {
+    list-style-type: disc;
+    list-style-position: outside;
+    margin: 1.12em 0;
+}
+
+ul.menu {
+    margin: 0px;
+    padding: 0px;
+    text-indent:5px;
+    list-style:none;
+    width:200px;
+    overflow: auto;
+}
+
+ul.menu li {
+    padding-top: 8px;
+}
+
+ul.menu a {
+    letter-spacing:1px;
+    text-decoration:none;
+    padding-bottom:5px;
+    width:200px;
+}
+
+ul.menu .itemselected, ul.menu .itemselected a, ul.menu .itemselected a {
+    color: black;
+}
+
+ul.menu .item, ul.menu a.item, ul.menu .item a {
+    color: #7E7E7E;
+}
+
+ul.menu a:hover, ul.menu .item a:hover {
+    color: #70BD1A;
+    text-decoration: none;
+}
+
+ul.submenu {
+    font-size: 90%;
+    margin-left: 15px;
+    padding-bottom: 0px;
+    width: auto;
+    border-right: 0px;
+    display: none;
+}
+
+.itemselected ul.submenu {
+    display: block;
+}
+
+ul.submenu li {
+    padding-top: 4px;
+}
+
+ul.submenu li a {
+    padding-bottom: 0px;
+}
+
+
+
 /*  Main css
 
 .add_ftp_user{padding:10px; position:relative;}

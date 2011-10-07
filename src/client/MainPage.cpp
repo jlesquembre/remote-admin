@@ -123,6 +123,7 @@ MainPage::MainPage( const WEnvironment& env)
 
 
     WContainerWidget *a = new WContainerWidget();
+    a->addStyleClass("overhidden");
     //a->setStyleClass("ttt");
 
     WVBoxLayout *ftpLayout = new WVBoxLayout(a);

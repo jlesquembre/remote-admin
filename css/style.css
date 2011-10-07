@@ -134,13 +134,13 @@ background: #ccc;
     background:white !important;
 }
 
-/*
-.ttt
+
+.overhidden
 {
-  width:100%;
-  overflow:auto;
+  
+  overflow:hidden;
 }
-*/
+
 .contents {
     padding: 16px;
     border-left: 4px solid #999;

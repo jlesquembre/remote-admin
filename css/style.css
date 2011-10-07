@@ -5,6 +5,8 @@ body, html {
     overflow: hidden;
 }
 
+
+
 /*.menu * .item {
   cursor: pointer; cursor: hand;
   color: blue;
@@ -97,7 +99,7 @@ float: left;
 list-style: none;
 height: 32px; /*--Set height of tabs--*/
 border-bottom: 1px solid #999;
-border-left: 1px solid #999;
+border-left: 4px solid #999;
 width: 100%;
 }
 
@@ -122,17 +124,37 @@ padding: 0 20px;
 outline: none;
 }
 
-.tabs .itemselected
-{
-    border-bottom: 1px solid #fff;    
-    background:white;
+ul.tabs li a:hover {
+background: #ccc;
 }
 
+.tabs .itemselected
+{
+    border-bottom: 4px solid #fff;    
+    background:white !important;
+}
 
+/*
+.ttt
+{
+  width:100%;
+  overflow:auto;
+}
+*/
+.contents {
+    padding: 16px;
+    border-left: 4px solid #999;
+    margin-top:0;
+    /*border-top:none;    
+    height: 100%;
+    display: block; */
+    
+    overflow: auto;
+}
 
-
-div.contents {
-    padding: 6px;
+.tabs
+{
+  /*position:fixed;*/
 }
 
 /*ul {
@@ -140,19 +162,37 @@ div.contents {
     list-style-position: outside;
     margin: 1.12em 0;
 }*/
-/*
+
+/*.menu
+{
+  padding-top:30px !important;
+}*/
+
 ul.menu {
     margin: 0px;
-    padding: 0px;
+    padding: 50px 0px 0px 0px;
     text-indent:5px;
     list-style:none;
     width:200px;
-    overflow: auto;
+    overflow: hidden;
 }
 
-ul.menu li {
-    padding-top: 8px;
+ul.menu li a{
+    padding: 8px;
+    width: 100%;
+white-space: nowrap;
+overflow: hidden;
+/*background:green;*/
+display:block;
+
+  
 }
+ul.menu li a:hover {
+
+/*text-overflow: ellipsis;*/
+/*background:#e0e0e0;*/
+}
+
 
 ul.menu a {
     letter-spacing:1px;
@@ -163,16 +203,20 @@ ul.menu a {
 
 ul.menu .itemselected, ul.menu .itemselected a, ul.menu .itemselected a {
     color: black;
+    background:#999 !important;
 }
 
 ul.menu .item, ul.menu a.item, ul.menu .item a {
-    color: #7E7E7E;
+    color: black;
 }
 
 ul.menu a:hover, ul.menu .item a:hover {
-    color: #70BD1A;
+    background: #e0e0e0;
     text-decoration: none;
 }
+
+
+
 
 ul.submenu {
     font-size: 90%;
@@ -195,7 +239,7 @@ ul.submenu li a {
     padding-bottom: 0px;
 }
 
-*/
+
 
 /*  Main css
 

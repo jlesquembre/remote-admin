@@ -24,6 +24,8 @@ FtpUserController::FtpUserController( WContainerWidget *parent)
     : WContainerWidget(parent)
 {
 
+    //this->setStyleClass("");
+
     //Define notification area
     notificationArea = new Wt::WText("&nbsp;",this);
     notificationArea->setStyleClass("notificationArea");

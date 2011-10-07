@@ -122,16 +122,23 @@ MainPage::MainPage( const WEnvironment& env)
     //new FtpUserController(examples);
 
 
-    WVBoxLayout *ftpLayout = new WVBoxLayout(root());
+    WContainerWidget *a = new WContainerWidget();
+    //a->setStyleClass("ttt");
+
+    WVBoxLayout *ftpLayout = new WVBoxLayout(a);
+    ftpLayout->setSpacing(0);
+    ftpLayout->setContentsMargins(0, 10, 10, 10);
     Wt::WStackedWidget *ftpContents = new Wt::WStackedWidget(0);
     Wt::WMenu *ftpMenu = new Wt::WMenu(ftpContents, Wt::Horizontal, 0);
     ftpMenu->setRenderAsList(true);
     ftpMenu->addStyleClass("tabs");
-    //ftpMenu->addStyleClass("tab_container");
     ftpLayout->addWidget(ftpMenu);
     ftpLayout->addWidget(ftpContents,1);
     ftpMenu->addItem("General options", new Wt::WText("Not yet available"));
     ftpMenu->addItem("Users management", new FtpUserController());
+
+    ftpContents->setStyleClass("contents");
+    //ftpMenu->addStyleClass("mmenu");
 
     WVBoxLayout *sambaLayout = new WVBoxLayout();
     Wt::WStackedWidget *sambaContents = new Wt::WStackedWidget(0);
@@ -141,33 +148,47 @@ MainPage::MainPage( const WEnvironment& env)
 
 
 
-//    Wt::WHBoxLayout *mainLayout = new Wt::WHBoxLayout(root());
-//    mainLayout->setContentsMargins(0, 0, 0, 0);
-
-//    Wt::WStackedWidget *contents = new Wt::WStackedWidget(0);
-//    contents->setOverflow(WContainerWidget::OverflowAuto);
-//    contents->setStyleClass("contents");
-//    contents->setPositionScheme(Relative); // without needs testing on IE...
-
-//    // create a menu
-//    Wt::WMenu *menu = new Wt::WMenu(contents, Wt::Vertical, 0);
-//    menu->setRenderAsList(true);
-//    menu->addStyleClass("menu");
 
 
-//    Wt::WTabWidget *ftpTabs = new Wt::WTabWidget();
 
-//    mainLayout->addWidget(menu);
-//    mainLayout->addWidget(contents,1);
-//    //layout->setResizable(0,true);
+    Wt::WHBoxLayout *mainLayout = new Wt::WHBoxLayout(root());
+    mainLayout->setContentsMargins(0, 0, 0, 0);
+    mainLayout->setSpacing(0);
 
-//    // add items using the default lazy loading policy.
-//    //ftpLayout->setParent(menu);
-//    menu->addItem("FTP", ftpTabs);
-//    menu->addItem("Samba", new Wt::WText("Not yet available"));
+    //WVBoxLayout * secondl = new WVBoxLayout();
+    //mainLayout->addLayout(secondl);
 
-//    ftpTabs->addTab(new WText("aa"), "General options");
-//    ftpTabs->addTab(new FtpUserController(), "Users management");
+    Wt::WStackedWidget *contents = new Wt::WStackedWidget(0);
+    contents->setOverflow(WContainerWidget::OverflowAuto);
+    //contents->setStyleClass("contents");
+    contents->setPositionScheme(Relative); // without needs testing on IE...
+
+    // create a menu
+    Wt::WMenu *menu = new Wt::WMenu(contents, Wt::Vertical, 0);
+    menu->setRenderAsList(true);
+    menu->addStyleClass("menu");
+
+
+
+
+    mainLayout->addWidget(menu);
+    mainLayout->addWidget(contents,1);
+    //mainLayout->addLayout(ftpLayout);
+    //mainLayout->addWidget(contents,1);
+    //layout->setResizable(0,true);
+
+
+
+
+    menu->addItem("FTP", a);
+    menu->addItem("Samba", new Wt::WText("Not yet available"));
+
+    //ftpTabs->addTab(new WText("aa"), "General options");
+    //ftpTabs->addTab(new FtpUserController(), "Users management");
+
+//    WContainerWidget *a = new WContainerWidget();
+//    mainLayout->addWidget(a);
+
 
 
 

@@ -76,16 +76,71 @@ body, html {
 }
 */
 
+/*
+.menu                             : the list (you custom menu class)
+.menu li                          : a list item
+.menu span                        : spans of a list item
+
+
+.menu a.item span                 : the inner span of the label of an enabled item
+.menu span.item                   : the label of a disabled item
+.menu a.itemselected span         : the inner span the label of an enabled selected item
+.menu span.itemselected           : the label of a disabled selected item
+*/
+
+
+
+ul.tabs  {
+margin: 0;
+padding: 0;
+float: left;
+list-style: none;
+height: 32px; /*--Set height of tabs--*/
+border-bottom: 1px solid #999;
+border-left: 1px solid #999;
+width: 100%;
+}
+
+ul.tabs li{
+float: left;
+margin: 0;
+padding: 0;
+height: 30px; /*-- ul.tabs.height - this.border*2 --*/
+line-height: 30px; /*--Vertically aligns the text within the tab--*/
+border: 1px solid #999;
+border-left: none;
+position: relative;
+background: #e0e0e0;
+}
+
+ul.tabs li a {
+text-decoration: none;
+color: #000;
+display: block;
+font-size: 1.2em;
+padding: 0 20px;
+outline: none;
+}
+
+.tabs .itemselected
+{
+    border-bottom: 1px solid #fff;    
+    background:white;
+}
+
+
+
+
 div.contents {
     padding: 6px;
 }
 
-ul {
+/*ul {
     list-style-type: disc;
     list-style-position: outside;
     margin: 1.12em 0;
-}
-
+}*/
+/*
 ul.menu {
     margin: 0px;
     padding: 0px;
@@ -140,7 +195,7 @@ ul.submenu li a {
     padding-bottom: 0px;
 }
 
-
+*/
 
 /*  Main css
 

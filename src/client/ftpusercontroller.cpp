@@ -25,6 +25,7 @@ FtpUserController::FtpUserController( WContainerWidget *parent)
 {
 
     //this->setStyleClass("");
+    //this->addStyleClass("test1");
 
     //Define notification area
     notificationArea = new Wt::WText("&nbsp;",this);
@@ -95,6 +96,9 @@ FtpUserController::FtpUserController( WContainerWidget *parent)
         }
 
     _autofsc = new AutofsController();
+
+    //new WBreak(this);
+
 
 }
 
@@ -188,10 +192,12 @@ void FtpUserController::addFtpUser()
 
     logindb->add(newFtpUser->text().toUTF8(),newFtpPass->text().toUTF8());
     _autofsc->addEntry(newFtpUser->text().toUTF8());
+    //this->insertWidget(this->count()-1,new FtpUser(newFtpUser->text().toUTF8(),0));
     new FtpUser(newFtpUser->text().toUTF8(),this);
     this->showNotification(messageType::SUCCESS, newFtpUser->text() + " was added!");
     this->hideDialog();
 
+    //this->insertWidget(this->count()-1,new FtpUser(newFtpUser->text().toUTF8()));
 
 }
 

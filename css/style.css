@@ -1,9 +1,9 @@
-body, html {    
+/*body, html {    
     height: 100%;
     width: 100%;
     margin: 0px; padding: 0px; border: none;
     overflow: hidden;
-}
+}*/
 
 
 
@@ -99,7 +99,7 @@ float: left;
 list-style: none;
 height: 32px; /*--Set height of tabs--*/
 border-bottom: 1px solid #999;
-border-left: 4px solid #999;
+/*border-left: 4px solid #999;*/
 width: 100%;
 }
 
@@ -132,28 +132,80 @@ background: #ccc;
 {
     border-bottom: 4px solid #fff;    
     background:white !important;
+    
 }
+
 
 
 .overhidden
 {
   
-  overflow:hidden;
+  overflow:hidden;  
+  /*padding:0px;
+  margin:0px;*/
+  
 }
 
 .contents {
-    padding: 16px;
-    border-left: 4px solid #999;
-    margin-top:0;
-    /*border-top:none;    
-    height: 100%;
-    display: block; */
+    /*padding: 20px 0px;*/
+    /*margin-bottom: 160px !important;*/
     
-    overflow: auto;
+    /*padding-top:20px;*/
+    border-top:2px solid transparent ;
+    
+    
+    /*border-bottom:15px solid transparent ;*/
+    /*height:auto !important;*/
+    
+    /*border-left: 4px solid #999;   */
+    
+    
+    /*padding-top:10px !important;*/
+    
+  /*  border-top:none;    
+    height: 100%;
+    
+    position:relative;
+    
+    
+    */
+    overflow: hidden;
+    
 }
+
+
+
+.tabcontent{
+  
+  /*background-color:red;*/
+  /*height:inherit;*/
+  /*bottom:20px;*/
+  /*top:0;
+  bottom:0;
+  position:absolute;*/
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+  padding:10px;
+  overflow: auto;
+}
+
+
+.contentsp {
+    
+    /*padding-bottom:10px;*/
+    
+    border-left: 4px solid #999;   
+    /*overflow: show;*/
+    
+    
+}
+
+
 
 .tabs
 {
+  
   /*position:fixed;*/
 }
 

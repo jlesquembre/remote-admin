@@ -40,7 +40,8 @@ find_library(DB_LIB db_cxx)
 
 add_executable(MainPage src/server/apppaths.cpp src/server/optionmap.cpp src/server/autofscontroller.cpp src/server/autofs.cpp
                         src/server/treenodefolder.cpp src/client/MainPage.cpp src/server/WriteConf.cpp src/server/logindb.cpp
-                        src/client/ftpuser.cpp src/client/ftpusercontroller.cpp )
+                        src/client/ftpuser.cpp src/client/ftpusercontroller.cpp
+                        src/widgets/tabwidget.cpp )
 
 #add_executable(m2 src/client/MainPage.cpp src/server/WriteConf.cpp)
 

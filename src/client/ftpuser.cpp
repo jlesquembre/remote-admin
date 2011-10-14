@@ -127,10 +127,6 @@ FtpUser::FtpUser(std::string name, WContainerWidget *parent)
     createFoldersBlock();
 
 
-
-    boost::filesystem::copy_file(AppPaths::ftpUserDefaultConfFile,
-                                 AppPaths::ftpUserConfPath + "/" + this->name->text().toUTF8());
-
     options = new OptionMap(AppPaths::ftpUserConfPath + "/" + this->name->text().toUTF8());
     if(!options->exist())
         createConfFile();

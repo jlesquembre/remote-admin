@@ -2,6 +2,8 @@
 #include "ftpuser.h"
 #include "MainPage.h"
 #include "../server/logindb.h"
+#include "../server/apppaths.h"
+
 #include <Wt/WApplication>
 #include <Wt/WPushButton>
 #include <Wt/WSignal>
@@ -14,7 +16,10 @@
 #include <Wt/WApplication>
 #include <Wt/WMessageBox>
 #include <Wt/WLabel>
+
 #include <boost/bind.hpp>
+#include <boost/filesystem.hpp>
+
 #include <vector>
 #include <string>
 
@@ -194,6 +199,10 @@ void FtpUserController::addFtpUser()
     _autofsc->addEntry(newFtpUser->text().toUTF8());
     //this->insertWidget(this->count()-1,new FtpUser(newFtpUser->text().toUTF8(),0));
     new FtpUser(newFtpUser->text().toUTF8(),this);
+
+    boost::filesystem::copy_file(AppPaths::ftpUserDefaultConfFile,
+                                 AppPaths::ftpUserConfPath + "/" + newFtpUser->text().toUTF8());
+
     this->showNotification(messageType::SUCCESS, newFtpUser->text() + " was added!");
     this->hideDialog();
 

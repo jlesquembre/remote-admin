@@ -2,6 +2,7 @@
 #include "ftpusercontroller.h"
 #include "../server/optionmap.h"
 #include "../server/treenodefolder.h"
+#include "../server/apppaths.h"
 
 #include <Wt/WApplication>
 #include <Wt/WPushButton>
@@ -17,7 +18,9 @@
 #include <Wt/WAnimation>
 #include <Wt/WCheckBox>
 
+#include <boost/lexical_cast.hpp>
 #include <boost/filesystem/path.hpp>
+#include <boost/filesystem.hpp>
 #include <boost/bind.hpp>
 
 #include <vector>
@@ -25,7 +28,6 @@
 #include <map>
 #include <string>
 #include <set>
-#include <boost/lexical_cast.hpp>
 
 using namespace Wt;
 
@@ -126,12 +128,14 @@ FtpUser::FtpUser(std::string name, WContainerWidget *parent)
 
 
 
-    /*WPushButton *a = new WPushButton(this);
-    a->setStyleClass("container");*/
+    boost::filesystem::copy_file(AppPaths::ftpUserDefaultConfFile,
+                                 AppPaths::ftpUserConfPath + "/" + this->name->text().toUTF8());
 
-    options = new OptionMap(userConfPath + this->name->text().toUTF8());
+    options = new OptionMap(AppPaths::ftpUserConfPath + "/" + this->name->text().toUTF8());
     if(!options->exist())
         createConfFile();
+    options->update("local_root",
+                    AppPaths::userVirtualHomePath + "/" + this->name->text().toUTF8());
 
 }
 

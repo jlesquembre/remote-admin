@@ -17,9 +17,9 @@ AutofsController::AutofsController()
 
 
 
-    _tempFile = AppPaths::autoMasterPath + ".tmp";
+    _tempFile = AppPaths::autoMasterFile + ".tmp";
 
-    fstream stream (AppPaths::autoMasterPath.c_str(), ios::in | ios::out);
+    fstream stream (AppPaths::autoMasterFile.c_str(), ios::in | ios::out);
     string line;
     while(stream.good())
         {
@@ -56,7 +56,7 @@ AutofsController::AutofsController()
 void AutofsController::startParse()
 {
 
-    _instream.open(AppPaths::autoMasterPath.c_str(), ios::in );
+    _instream.open(AppPaths::autoMasterFile.c_str(), ios::in );
     _outstream.open(_tempFile.c_str(), ios::out );
 
     string line;
@@ -82,14 +82,16 @@ void AutofsController::endParse()
 
     _instream.close();
     _outstream.close();
-    rename(_tempFile.c_str(), AppPaths::autoMasterPath.c_str());
+    rename(_tempFile.c_str(), AppPaths::autoMasterFile.c_str());
 
 }
 
 void AutofsController::addEntry(std::string user)
 {
     this->startParse();
-    _outstream << "/home/virtual/" << user << " /etc/vsftpd/maps/auto." << user << " --ghost"<<endl;
+    _outstream << AppPaths::userVirtualHomePath << "/" << user << " "
+               << AppPaths::autoUsersPath << "/auto." << user
+               << " --ghost"<<endl;
     this->endParse();
 
 }

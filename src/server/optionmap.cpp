@@ -102,6 +102,12 @@ void OptionMap::save()
 
 }
 
+void OptionMap::update(std::string key, std::string value)
+{
+    container[key] = value;
+    this->save();
+}
+
 void OptionMap::printMap()
 {
     typedef map<string,string>::const_iterator CI;

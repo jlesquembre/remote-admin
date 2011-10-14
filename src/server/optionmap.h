@@ -10,6 +10,7 @@ public:
     OptionMap(std::string);
     void read(std::string);
     void save();
+    void update(std::string, std::string);
     bool exist();
     void deleteConfFile();
     void printMap();

@@ -7,8 +7,14 @@ class AppPaths
 {
 public:
     //AppPaths();
-    static const std::string autoMasterPath;
+    static const std::string autoMasterFile;
     static const std::string autoUsersPath;
+
+    static const std::string ftpUserConfPath;
+    static const std::string ftpDBFile;
+    static const std::string userVirtualHomePath;
+    static const std::string ftpUserDefaultConfFile;
+
     //static const std::string LOGFILENAME;
 
 };

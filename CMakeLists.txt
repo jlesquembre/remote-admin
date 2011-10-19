@@ -5,16 +5,16 @@ project (RemoteAdmin)
 SET(EXECUTABLE_OUTPUT_PATH ./Binaries)
 SET(PROJECT_FOLDER ../remote-admin)
 
-SET(WT_INCLUDE /home/jlle/develop/wt/wt-install/include/)
-SET(WT_LIB_DIR /home/jlle/develop/wt/wt-install/lib/)
+#SET(WT_INCLUDE /home/jlle/develop/wt/wt-install/include/)
+#SET(WT_LIB_DIR /home/jlle/develop/wt/wt-install/lib/)
+#-DWT_DIR=/home/jlle/develop/wt/wt-install
 
-#SET(WT_INCLUDE /home/jlle/develop/wt/install_wt_3_1_10_boost_1_42_0/include/)
-#SET(WT_LIB_DIR /home/jlle/develop/wt/install_wt_3_1_10_boost_1_42_0/lib/)
-#SET(BOOST_INCLUDE /home/jlle/develop/boost/stage_boost_1_42_0/include/)
-#SET(BOOST_LIB_DIR /home/jlle/develop/boost/stage_boost_1_42_0/lib/)
+IF(WT_DIR)
+    #include_directories( ${WT_INCLUDE})# ${BOOST_INCLUDE})
+    include_directories( ${WT_DIR}/include )
+ENDIF()
 
 
-include_directories( ${WT_INCLUDE})# ${BOOST_INCLUDE})
 #link_directories( ${WT_LIB} ${BOOST_LIB}) #if are in LD_LIBRARY_PATH not necessary
                                            #and better use find_library
 
@@ -23,14 +23,18 @@ add_custom_target(static_files ALL cp -r ${PROJECT_FOLDER}/css ${EXECUTABLE_OUTP
 
 
 
-
-find_library(WT_LIB wt ${WT_LIB_DIR})
-find_library(WTEXT_LIB wtext ${WT_LIB_DIR})
-find_library(WTHTTP_LIB wthttp ${WT_LIB_DIR})
+IF(WT_DIR)
+    find_library(WT_LIB wt ${WT_DIR}/lib)
+    find_library(WTEXT_LIB wtext ${WT_DIR}/lib)
+    find_library(WTHTTP_LIB wthttp ${WT_DIR}/lib)
+ELSE()
+    find_library(WT_LIB wt)
+    find_library(WTEXT_LIB wtext)
+    find_library(WTHTTP_LIB wthttp)
+ENDIF()
 set(WT_LIBS ${WT_LIB} ${WTEXT_LIB} ${WTHTTP_LIB})
 
-find_library(DB_LIB db_cxx)                          
-
+find_library(DB_LIB db_cxx)
 
 
 add_executable(MainPage src/server/apppaths.cpp src/server/optionmap.cpp src/server/autofscontroller.cpp src/server/autofs.cpp
@@ -44,23 +48,36 @@ TARGET_LINK_LIBRARIES(MainPage ${DB_LIB})
 
 
 
+#MESSAGE("arch is  ${arch}")
+#UNSET(DISTRO CACHE)
+IF(NOT DISTRO)
+    EXECUTE_PROCESS(COMMAND lsb_release -is
+                    OUTPUT_VARIABLE DISTRO
+                    OUTPUT_STRIP_TRAILING_WHITESPACE)
+ENDIF()
 
+STRING(TOLOWER ${DISTRO} DISTRO)
+
+IF(DISTRO MATCHES debian)
+    INCLUDE(./packages/debian/CMakeLists.txt)
+ENDIF()
+
+#MESSAGE("arch is ${DISTRO}")
 
 ##### Installation and debian package
 
-#SET(INSTALL_DIR /home/jlle/Descagas/DB/Debian)
-SET(INSTALL_DIR /etc/remoteadmin)
+#SET(INSTALL_DIR /etc/remoteadmin)
 
-INSTALL(TARGETS MainPage DESTINATION ${INSTALL_DIR})
-INSTALL(DIRECTORY ${PROJECT_FOLDER}/css DESTINATION ${INSTALL_DIR})
+#INSTALL(TARGETS MainPage DESTINATION ${INSTALL_DIR})
+#INSTALL(DIRECTORY ${PROJECT_FOLDER}/css DESTINATION ${INSTALL_DIR})
 
-SET(CPACK_GENERATOR "DEB")
-SET(CPACK_PACKAGE_VERSION "0.0.2")
-SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "Jose Luis Lafuente")
-SET(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "amd64")
-SET(CPACK_DEBIAN_PACKAGE_SECTION "utils")
-SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libc6 (>= 2.3.1-6), bindfs, vsftpd, autofs, witty, libdb4.8++")
-SET(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "${PROJECT_FOLDER}/CMake/debian/postinst;" )
+#SET(CPACK_GENERATOR "DEB")
+#SET(CPACK_PACKAGE_VERSION "0.0.2")
+#SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "Jose Luis Lafuente")
+#SET(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "amd64")
+#SET(CPACK_DEBIAN_PACKAGE_SECTION "utils")
+#SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libc6 (>= 2.3.1-6), bindfs, vsftpd, autofs, witty, libdb4.8++")
+#SET(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "${PROJECT_FOLDER}/CMake/debian/postinst;" )
 
 
-INCLUDE(CPack)
+#INCLUDE(CPack)

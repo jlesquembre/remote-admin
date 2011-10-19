@@ -1,4 +1,5 @@
 #include "logindb.h"
+#include "apppaths.h"
 #include <db_cxx.h>
 #include <string>
 #include <vector>
@@ -24,7 +25,7 @@ void LoginDB::openDb()
 
     // Open the database
     db->open(NULL,                // Transaction pointer
-             "/home/jlle/Descargas/DB/login.db",          // Database file name
+             AppPaths::ftpDBFile,          // Database file name
              NULL,                // Optional logical database name
              DB_BTREE,            // Database access method
              oFlags,              // Open flags

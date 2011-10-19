@@ -8,3 +8,6 @@ adduser -m virtual
 
 touch /etc/vsftpd/vsftpd_login.db
 chmod 600 /etc/vsftpd/vsftpd_login.db
+
+cp /usr/share/remoteadmin/data/vsftpd.conf /etc
+cp /usr/share/remoteadmin/data/pam.d/vsftpd.conf /etc/pam.d

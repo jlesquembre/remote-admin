@@ -1,3 +1,1 @@
-/etc/vsftpd.conf
-/etc/init.d/vsftpd
-/etc/pam.d/vsftpd
+/etc/init.d/remoteadmin

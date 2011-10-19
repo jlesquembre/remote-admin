@@ -10,8 +10,8 @@ SET(DATA ${PROJECT_FOLDER}/packages/debian/data)
 INSTALL(TARGETS MainPage DESTINATION /usr/sbin)
 INSTALL(DIRECTORY ${PROJECT_FOLDER}/css DESTINATION /usr/share/remoteadmin)
 
-INSTALL(FILES ${DATA}/vsftpd.conf DESTINATION /etc)
-INSTALL(FILES ${DATA}/vsftpd DESTINATION /etc/pam.d)
+INSTALL(FILES ${DATA}/vsftpd.conf DESTINATION /usr/share/remoteadmin/data)
+INSTALL(FILES ${DATA}/vsftpd DESTINATION /usr/share/remoteadmin/data/pam.d)
 INSTALL(FILES ${DATA}/ftpuser.conf.default DESTINATION /usr/share/remoteadmin)
 
 

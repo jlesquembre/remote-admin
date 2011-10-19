@@ -25,7 +25,7 @@ void LoginDB::openDb()
 
     // Open the database
     db->open(NULL,                // Transaction pointer
-             AppPaths::ftpDBFile,          // Database file name
+             AppPaths::ftpDBFile.c_str(),          // Database file name
              NULL,                // Optional logical database name
              DB_BTREE,            // Database access method
              oFlags,              // Open flags

@@ -21,7 +21,7 @@ SET(CPACK_PACKAGE_VERSION "0.0.2")
 SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "Jose Luis Lafuente")
 SET(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "${arch}")
 SET(CPACK_DEBIAN_PACKAGE_SECTION "utils")
-SET(CPACK_DEBIAN_PACKAGE_DEPENDS "bindfs, vsftpd, autofs, witty(>=3.1.10), libdb4.8++")
+SET(CPACK_DEBIAN_PACKAGE_DEPENDS "bindfs, vsftpd, autofs, witty(>=3.1.10), libdb4.8++, adduser")
 
 SET(CONTROL ${PROJECT_FOLDER}/packages/debian/control)
 SET(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "${CONTROL}/postinst;${CONTROL}/conffiles;" )

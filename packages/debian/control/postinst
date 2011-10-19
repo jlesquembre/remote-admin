@@ -1,0 +1,10 @@
+#!/bin/sh
+
+mkdir /etc/vsftpd
+mkdir /etc/vsftpd/user_conf
+mkdir /etc/vsftpd/maps 
+
+adduser -m virtual
+
+touch /etc/vsftpd/vsftpd_login.db
+chmod 600 /etc/vsftpd/vsftpd_login.db

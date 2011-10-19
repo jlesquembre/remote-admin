@@ -10,8 +10,10 @@
 #include "../server/optionmap.h"
 #include "../server/treenodefolder.h"
 #include "../server/autofscontroller.h"
+#include "../server/apppaths.h"
 #include "../widgets/tabwidget.h"
 #include "ftpusercontroller.h"
+
 #include <Wt/WApplication>
 #include <Wt/WPushButton>
 #include <Wt/WSignal>
@@ -88,7 +90,7 @@ MainPage::MainPage( const WEnvironment& env)
     setTitle("Main page");
     //wApp->require("http://code.jquery.com/jquery-1.6.1.min.js");
 
-    this->useStyleSheet("css/style.css");
+    this->useStyleSheet(AppPaths::cssFile);
 
     //this->setCssTheme("");
 

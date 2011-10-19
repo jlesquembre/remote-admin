@@ -1,0 +1,4 @@
+## Created by remoteadmin
+
+auth required /lib/security/pam_userdb.so db=/etc/vsftpd/vsftpd_login
+account required /lib/security/pam_userdb.so db=/etc/vsftpd/vsftpd_login

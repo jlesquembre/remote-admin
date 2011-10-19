@@ -15,7 +15,7 @@ public:
     static const std::string userVirtualHomePath;
     static const std::string ftpUserDefaultConfFile;
 
-    static const std::string AppPaths::cssFile;
+    static const std::string cssFile;
 
     //static const std::string LOGFILENAME;
 

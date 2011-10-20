@@ -23,8 +23,9 @@
 //const std::string AppPaths::ftpUserDefaultConfFile = "/home/jlle/Descargas/DB/virtual/ftpuser.conf.default";
 
 
-//  /usr/share/remoteadmin/css/style.css
-//const std::string AppPaths::cssFile = "css/style.css";
+////  /usr/share/remoteadmin/css/style.css
+//// Relative to docroot, by deafult /usr/share/remoteadmin/resources
+//const std::string AppPaths::cssFile = "style.css";
 
 
 
@@ -39,4 +40,4 @@ const std::string AppPaths::ftpUserConfPath = "/etc/vsftpd/user_conf";
 const std::string AppPaths::ftpDBFile = "/etc/vsftpd/vsftpd_login.db";
 const std::string AppPaths::userVirtualHomePath = "/home/virtual";
 const std::string AppPaths::ftpUserDefaultConfFile = "/usr/share/remoteadmin/ftpuser.conf.default";
-const std::string AppPaths::cssFile = "/usr/share/remoteadmin/css/style.css";
+const std::string AppPaths::cssFile = "style.css";

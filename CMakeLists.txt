@@ -18,7 +18,7 @@ ENDIF()
 #link_directories( ${WT_LIB} ${BOOST_LIB}) #if are in LD_LIBRARY_PATH not necessary
                                            #and better use find_library
 
-add_custom_target(static_files ALL cp -r ${PROJECT_FOLDER}/css ${EXECUTABLE_OUTPUT_PATH} SOURCES css/style.css)
+add_custom_target(static_files ALL cp -r ${PROJECT_FOLDER}/resources ${EXECUTABLE_OUTPUT_PATH} SOURCES resources/style.css)
 
 
 

@@ -92,6 +92,7 @@ MainPage::MainPage( const WEnvironment& env)
 
     this->useStyleSheet(AppPaths::cssFile);
 
+
     //this->setCssTheme("");
 
     userList = new WContainerWidget(root());

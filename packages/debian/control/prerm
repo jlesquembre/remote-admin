@@ -6,3 +6,13 @@ if [ "$1" = "remove" ]; then
     cp $BACKUP_F/vsftpd.conf /etc
     cp $BACKUP_F/vsftpd /etc/pam.d
 fi
+
+
+# Daemon
+if [ -x "/etc/init.d/remoteadmin" ]; then
+    if [ -x "`which invoke-rc.d 2>/dev/null`" ]; then
+        invoke-rc.d remoteadmin stop || exit $?
+    else
+        /etc/init.d/remoteadmin stop || exit $?
+    fi
+fi

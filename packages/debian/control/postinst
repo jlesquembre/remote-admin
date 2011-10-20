@@ -31,3 +31,13 @@ if [ ! -n "$2" ]; then
     cp /usr/share/remoteadmin/data/vsftpd      /etc/pam.d
 
 fi
+
+# Daemon
+if [ -x "/etc/init.d/vsftpd" ]; then
+    update-rc.d remoteadmin defaults 90 >/dev/null
+    if [ -x "`which invoke-rc.d 2>/dev/null`" ]; then
+        invoke-rc.d remoteadmin start || exit $?
+    else
+        /etc/init.d/remoteadmin start || exit $?
+    fi
+fi

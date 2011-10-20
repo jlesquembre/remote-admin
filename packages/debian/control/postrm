@@ -2,4 +2,14 @@
 
 if [ "$1" = "remove" -o "$1" = "purge" ]; then 
     userdel -r virtual
-fi 
+fi
+
+# Daemon
+if [ "$1" = "purge" ] ; then
+    update-rc.d vsftpd remoteadmin >/dev/null
+fi
+
+if [ "$1" = purge ] && [ -e /usr/share/debconf/confmodule ]; then
+    . /usr/share/debconf/confmodule
+    db_purge
+fi

@@ -13,6 +13,7 @@ INSTALL(DIRECTORY ${PROJECT_FOLDER}/resources DESTINATION /usr/share/remoteadmin
 INSTALL(FILES ${DATA}/vsftpd.conf          DESTINATION /usr/share/remoteadmin/data)
 INSTALL(FILES ${DATA}/vsftpd               DESTINATION /usr/share/remoteadmin/data)
 INSTALL(FILES ${DATA}/ftpuser.conf.default DESTINATION /usr/share/remoteadmin)
+INSTALL(FILES ${DATA}/remoteadmin          DESTINATION /etc/init.d)
 
 #Symlink for Wt resources
 INSTALL(DIRECTORY ${DATA}/sym/ DESTINATION /usr/share/remoteadmin/resources)

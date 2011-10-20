@@ -13,7 +13,9 @@ INSTALL(DIRECTORY ${PROJECT_FOLDER}/resources DESTINATION /usr/share/remoteadmin
 INSTALL(FILES ${DATA}/vsftpd.conf          DESTINATION /usr/share/remoteadmin/data)
 INSTALL(FILES ${DATA}/vsftpd               DESTINATION /usr/share/remoteadmin/data)
 INSTALL(FILES ${DATA}/ftpuser.conf.default DESTINATION /usr/share/remoteadmin)
-INSTALL(FILES ${DATA}/resources DESTINATION /usr/share/remoteadmin/resources)
+
+#Symlink for Wt resources
+INSTALL(DIRECTORY ${DATA}/sym/ DESTINATION /usr/share/remoteadmin/resources)
 
 
 SET(CPACK_GENERATOR "DEB")

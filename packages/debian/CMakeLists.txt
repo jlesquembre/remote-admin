@@ -18,7 +18,7 @@ INSTALL(FILES ${DATA}/ftpuser.conf.default DESTINATION /usr/share/remoteadmin)
 INSTALL(PROGRAMS ${DATA}/remoteadmin          DESTINATION /etc/init.d)
 
 #Symlink for Wt resources
-INSTALL(DIRECTORY ${DATA}/sym/ DESTINATION /usr/share/remoteadmin/resources)
+#INSTALL(DIRECTORY ${DATA}/sym/ DESTINATION /usr/share/remoteadmin/resources)
 
 
 SET(CPACK_GENERATOR "DEB")

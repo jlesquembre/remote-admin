@@ -30,6 +30,8 @@ if [ ! -n "$2" ]; then
     cp /usr/share/remoteadmin/data/vsftpd.conf /etc
     cp /usr/share/remoteadmin/data/vsftpd      /etc/pam.d
 
+    ln -s /usr/share/Wt/resources /usr/share/remoteadmin/resources/resources
+
 fi
 
 # Daemon

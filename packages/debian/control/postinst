@@ -1,24 +1,33 @@
 #!/bin/sh
 
-#mkdir /etc/vsftpd
+# Check if is a new installation
+# postinst configure (most-recently-configured-version)
+if [ ! -n "$2" ]; then
 
-echo "arguments->>>> $*"
+    if [ ! -d "/etc/vsftpd/user_conf" ]; then
+        mkdir -p /etc/vsftpd/user_conf
+    fi
 
-if [ ! -d "/etc/vsftpd/user_conf" ]; then
-    mkdir -p /etc/vsftpd/user_conf
+    if [ ! -d "/etc/vsftpd/maps " ]; then
+        mkdir -p /etc/vsftpd/maps 
+    fi
+
+    useradd --home /home/virtual --gid nogroup -m --shell /bin/false virtual
+
+    #Create empty DB file
+    touch /etc/vsftpd/vsftpd_login.db
+    chmod 600 /etc/vsftpd/vsftpd_login.db
+
+    # Backup files
+    BACKUP_F=/usr/share/remoteadmin/data/backup 
+    if [ ! -d "/usr/share/remoteadmin/data/backup" ]; then
+        mkdir -p $BACKUP_F
+    fi
+    cp /etc/vsftpd.conf $BACKUP_F
+    cp /etc/pam.d/vsftpd $BACKUP_F
+
+    #Replace files
+    cp /usr/share/remoteadmin/data/vsftpd.conf /etc
+    cp /usr/share/remoteadmin/data/vsftpd      /etc/pam.d
+
 fi
-
-if [ ! -d "/etc/vsftpd/maps " ]; then
-    mkdir -p /etc/vsftpd/maps 
-fi
-
-
-
-#adduser -m virtual
-useradd --home /home/virtual --gid nogroup -m --shell /bin/false virtual
-
-touch /etc/vsftpd/vsftpd_login.db
-chmod 600 /etc/vsftpd/vsftpd_login.db
-
-cp /usr/share/remoteadmin/data/vsftpd.conf /etc
-cp /usr/share/remoteadmin/data/pam.d/vsftpd /etc/pam.d

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Restore config files
+if [ "$1" = "remove" ]; then 
+    BACKUP_F=/usr/share/remoteadmin/data/backup
+    cp $BACKUP_F/vsftpd.conf /etc
+    cp $BACKUP_F/vsftpd /etc/pam.d
+fi

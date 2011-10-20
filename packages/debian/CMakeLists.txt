@@ -10,14 +10,14 @@ SET(DATA ${PROJECT_FOLDER}/packages/debian/data)
 INSTALL(TARGETS MainPage DESTINATION /usr/sbin)
 INSTALL(DIRECTORY ${PROJECT_FOLDER}/css DESTINATION /usr/share/remoteadmin)
 
-INSTALL(FILES ${DATA}/vsftpd.conf DESTINATION /usr/share/remoteadmin/data)
-INSTALL(FILES ${DATA}/vsftpd DESTINATION /usr/share/remoteadmin/data/pam.d)
+INSTALL(FILES ${DATA}/vsftpd.conf          DESTINATION /usr/share/remoteadmin/data)
+INSTALL(FILES ${DATA}/vsftpd               DESTINATION /usr/share/remoteadmin/data)
 INSTALL(FILES ${DATA}/ftpuser.conf.default DESTINATION /usr/share/remoteadmin)
 
 
 SET(CPACK_GENERATOR "DEB")
 SET(CPACK_SOURCE_GENERATOR "DEB")
-SET(CPACK_PACKAGE_VERSION "0.0.3")
+SET(CPACK_PACKAGE_VERSION "0.0.5")
 SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "Jose Luis Lafuente")
 SET(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "${arch}")
 SET(CPACK_DEBIAN_PACKAGE_SECTION "utils")

@@ -1,13 +1,24 @@
 #!/bin/sh
 
-mkdir /etc/vsftpd
-mkdir /etc/vsftpd/user_conf
-mkdir /etc/vsftpd/maps 
+#mkdir /etc/vsftpd
 
-adduser -m virtual
+echo "arguments->>>> $*"
+
+if [ ! -d "/etc/vsftpd/user_conf" ]; then
+    mkdir -p /etc/vsftpd/user_conf
+fi
+
+if [ ! -d "/etc/vsftpd/maps " ]; then
+    mkdir -p /etc/vsftpd/maps 
+fi
+
+
+
+#adduser -m virtual
+useradd --home /home/virtual --gid nogroup -m --shell /bin/false virtual
 
 touch /etc/vsftpd/vsftpd_login.db
 chmod 600 /etc/vsftpd/vsftpd_login.db
 
 cp /usr/share/remoteadmin/data/vsftpd.conf /etc
-cp /usr/share/remoteadmin/data/pam.d/vsftpd.conf /etc/pam.d
+cp /usr/share/remoteadmin/data/pam.d/vsftpd /etc/pam.d

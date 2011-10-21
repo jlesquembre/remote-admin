@@ -20,14 +20,13 @@ void LoginDB::openDb()
     db = new Db (NULL,0);               // Instantiate the Db object
     //db->set_encrypt();
 
-    u_int32_t oFlags = DB_CREATE; // Open flags;
-
+    u_int32_t oFlags = DB_CREATE; // Open flags;    
 
     // Open the database
     db->open(NULL,                // Transaction pointer
              AppPaths::ftpDBFile.c_str(),          // Database file name
              NULL,                // Optional logical database name
-             DB_BTREE,            // Database access method
+             DB_HASH,            // Database access method
              oFlags,              // Open flags
              0);
 

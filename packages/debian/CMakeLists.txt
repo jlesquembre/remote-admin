@@ -15,7 +15,7 @@ INSTALL(FILES ${DATA}/vsftpd               DESTINATION /usr/share/remoteadmin/da
 INSTALL(FILES ${DATA}/ftpuser.conf.default DESTINATION /usr/share/remoteadmin)
 
 # Daemon
-INSTALL(PROGRAMS ${DATA}/remoteadmin          DESTINATION /etc/init.d)
+INSTALL(PROGRAMS ${DATA}/remoteadmin  DESTINATION /etc/init.d   PERMISSIONS OWNER_EXECUTE)
 
 #Symlink for Wt resources
 #INSTALL(DIRECTORY ${DATA}/sym/ DESTINATION /usr/share/remoteadmin/resources)

@@ -9,10 +9,11 @@ fi
 
 
 # Daemon
-if [ -x "/etc/init.d/remoteadmin" ]; then
-    if [ -x "`which invoke-rc.d 2>/dev/null`" ]; then
-        invoke-rc.d remoteadmin stop || exit $?
-    else
-        /etc/init.d/remoteadmin stop || exit $?
-    fi
-fi
+/etc/init.d/remoteadmin stop || exit $?
+#if [ -x "/etc/init.d/remoteadmin" ]; then
+    #if [ -x "`which invoke-rc.d 2>/dev/null`" ]; then
+    #    invoke-rc.d remoteadmin stop || exit $?
+    #else
+        
+    #fi
+#fi

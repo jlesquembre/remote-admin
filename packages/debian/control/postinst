@@ -12,7 +12,7 @@ if [ ! -n "$2" ]; then
         mkdir -p /etc/vsftpd/maps 
     fi
 
-    useradd --home /home/virtual --gid nogroup -m --shell /bin/false virtual
+    useradd --home /home/virtual --user-group -m --shell /bin/false virtual
 
     #Create empty DB file
     touch /etc/vsftpd/vsftpd_login.db

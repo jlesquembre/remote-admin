@@ -200,8 +200,9 @@ void FtpUserController::addFtpUser()
     //this->insertWidget(this->count()-1,new FtpUser(newFtpUser->text().toUTF8(),0));
     new FtpUser(newFtpUser->text().toUTF8(),this);
 
-    boost::filesystem::copy_file(AppPaths::ftpUserDefaultConfFile,
-                                 AppPaths::ftpUserConfPath + "/" + newFtpUser->text().toUTF8());
+    //std::cerr << "Copy file start..."<<std::endl;
+
+    //std::cerr << "Copy file end"<<std::endl;
 
     this->showNotification(messageType::SUCCESS, newFtpUser->text() + " was added!");
     this->hideDialog();

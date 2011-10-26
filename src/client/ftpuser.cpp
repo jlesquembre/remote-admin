@@ -33,7 +33,7 @@ using namespace Wt;
 
 int FtpUser::n = 0;
 FtpUser* FtpUser::openUser = NULL;
-string FtpUser::userConfPath = "/home/jlle/Descargas/DB/user_conf/";
+//string FtpUser::userConfPath = "/home/jlle/Descargas/DB/user_conf/";
 
 FtpUser::FtpUser(std::string name, WContainerWidget *parent)
     : WContainerWidget(parent)
@@ -128,8 +128,13 @@ FtpUser::FtpUser(std::string name, WContainerWidget *parent)
 
 
     options = new OptionMap(AppPaths::ftpUserConfPath + "/" + this->name->text().toUTF8());
-    if(!options->exist())
-        createConfFile();
+    if(!options->exist()){
+
+        options->read(AppPaths::ftpUserDefaultConfFile);
+        /*boost::filesystem::copy_file(AppPaths::ftpUserDefaultConfFile,
+                                     AppPaths::ftpUserConfPath + "/" + this->name->text().toUTF8());*/
+    }
+
     options->update("local_root",
                     AppPaths::userVirtualHomePath + "/" + this->name->text().toUTF8());
 
@@ -413,8 +418,8 @@ void FtpUser::changePassword()
 
 void FtpUser::createConfFile()
 {
-    options = new OptionMap(userConfPath + name->text().toUTF8());
-    options->read(userConfPath + "default");
-    options->save();
+    //options = new OptionMap(userConfPath + name->text().toUTF8());
+    //options->read(userConfPath + "default");
+    //options->save();
 }
 

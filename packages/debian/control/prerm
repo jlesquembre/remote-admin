@@ -7,6 +7,9 @@ if [ "$1" = "remove" ]; then
     cp $BACKUP_F/vsftpd /etc/pam.d
 fi
 
+if [ "$1" = "purge" ]; then 
+    rm /usr/share/remoteadmin/resources/resources
+fi
 
 # Daemon
 /etc/init.d/remoteadmin stop || exit $?

@@ -3,6 +3,7 @@
 #include "MainPage.h"
 #include "../server/logindb.h"
 #include "../server/apppaths.h"
+#include "../services/notification.h"
 
 #include <Wt/WApplication>
 #include <Wt/WPushButton>
@@ -33,8 +34,8 @@ FtpUserController::FtpUserController( WContainerWidget *parent)
     //this->addStyleClass("test1");
 
     //Define notification area
-    notificationArea = new Wt::WText("&nbsp;",this);
-    notificationArea->setStyleClass("notificationArea");
+    //notificationArea = new Wt::WText("&nbsp;",this);
+    //notificationArea->setStyleClass("notificationArea");
 
     //Define button to add ftp users
     WContainerWidget *addFtpUSerButtonContainer = new WContainerWidget(this);
@@ -107,7 +108,7 @@ FtpUserController::FtpUserController( WContainerWidget *parent)
 
 }
 
-
+/*
 void FtpUserController::showNotification(messageType::Enum type, Wt::WString message)
 {
 
@@ -135,7 +136,7 @@ void FtpUserController::hideNotification()
 {
     notificationArea->setText("&nbsp;");
     notificationArea->setStyleClass("notificationArea");
-}
+}*/
 
 void FtpUserController::showDialog()
 {
@@ -204,7 +205,9 @@ void FtpUserController::addFtpUser()
 
     //std::cerr << "Copy file end"<<std::endl;
 
-    this->showNotification(messageType::SUCCESS, newFtpUser->text() + " was added!");
+    //this->showNotification(messageType::SUCCESS, newFtpUser->text() + " was added!");
+    Notification::displayMessage(newFtpUser->text() + " was added!", messageType::SUCCESS);
+
     this->hideDialog();
 
     //this->insertWidget(this->count()-1,new FtpUser(newFtpUser->text().toUTF8()));

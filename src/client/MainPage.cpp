@@ -12,6 +12,7 @@
 #include "../server/autofscontroller.h"
 #include "../server/apppaths.h"
 #include "../widgets/tabwidget.h"
+#include "../services/notification.h"
 #include "ftpusercontroller.h"
 
 #include <Wt/WApplication>
@@ -84,6 +85,11 @@ MainPage::MainPage( const WEnvironment& env)
 
     */
 
+    //root()->addWidget(&(Notification::getInstance()));
+    //root()->addWidget(new Notification());
+
+
+    //Notification::getInstance();
 
     //this->setCssTheme("polished");
 
@@ -95,8 +101,10 @@ MainPage::MainPage( const WEnvironment& env)
 
     //this->setCssTheme("");
 
+    // Remove this 2 lines???
     userList = new WContainerWidget(root());
     userList->setStyleClass("list");
+
     //userList->sets
 
     //WText *a = new WText(logindb->getFirstKey(), root());
@@ -154,6 +162,21 @@ MainPage::MainPage( const WEnvironment& env)
 
 
 
+    WContainerWidget *t = new WContainerWidget();
+    t->setInline(false);
+
+    t->show();
+    t->setStyleClass("big");
+
+    //root()->addWidget(t);
+    //t->setPositionScheme(Wt::Fixed);
+
+
+
+
+    //WContainerWidget *acont = new WContainerWidget(root());
+    //acont->setStyleClass("tes1");
+
 
 
     Wt::WHBoxLayout *mainLayout = new Wt::WHBoxLayout(root());
@@ -177,8 +200,11 @@ MainPage::MainPage( const WEnvironment& env)
 
 
 
+
+
     mainLayout->addWidget(menu);
     mainLayout->addWidget(contents,1);
+    mainLayout->addWidget(new Notification());
     //mainLayout->addLayout(ftpLayout);
     //mainLayout->addWidget(contents,1);
     //layout->setResizable(0,true);
@@ -220,9 +246,9 @@ MainPage::MainPage( const WEnvironment& env)
 
     //namespace pt = boost::property_tree;
 
-    WPushButton *test = new WPushButton("Test!!!",root());
+//    WPushButton *test = new WPushButton("Test!!!",root());
 
-    test->clicked().connect(this, &MainPage::test);
+//    test->clicked().connect(this, &MainPage::test);
 
     /*
     Wt::WIconPair *folderIcon = new Wt::WIconPair("icons/yellow-folder-closed.png",
@@ -257,6 +283,21 @@ MainPage::MainPage( const WEnvironment& env)
      //cerr<<"hello"<<endl;
      //AutofsController *a = new AutofsController();
 
+
+    std::vector<WWidget*>::const_iterator a;
+
+    for(a = root()->children().begin();
+        a < (root()->children().end());
+        a++){
+        std::cout << "----------------------!!!!!!!!!/////////" << std::endl;
+
+        if (dynamic_cast<WText*>(*a) != NULL)
+          {
+            std::cout << dynamic_cast<WText*>(*a)->text() << std::endl;
+          }
+}
+
+    //std::cout << "----------------------!!!!!!!!!/////////" << ( WText* dynamic_cast<WText*>(root()->children().end())).text()<<std::endl;
 
 }
 

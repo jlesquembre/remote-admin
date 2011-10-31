@@ -3,6 +3,7 @@
 #include "../server/optionmap.h"
 #include "../server/treenodefolder.h"
 #include "../server/apppaths.h"
+#include "../services/notification.h"
 
 #include <Wt/WApplication>
 #include <Wt/WPushButton>
@@ -387,7 +388,8 @@ void FtpUser::deleteUser()
     //this->clear();
     FtpUserController *parent = dynamic_cast<FtpUserController*>(this->parent());
     parent->deleteFtpUser(this->name->text().toUTF8());
-    parent->showNotification(messageType::SUCCESS, name->text() + " was removed!!");
+    //parent->showNotification(messageType::SUCCESS, name->text() + " was removed!!");
+    Notification::displayMessage(name->text() + " was removed!!", messageType::SUCCESS);
     options->deleteConfFile();
     autofs->deleteFile();
     delete this;
@@ -411,7 +413,8 @@ void FtpUser::changePassword()
     FtpUserController *parent = dynamic_cast<FtpUserController*>(this->parent());
     parent->changeFtpPassword(name->text().toUTF8(), pass->text().toUTF8());
 
-    parent->showNotification(messageType::SUCCESS,"Password changed!!");
+    //parent->showNotification(messageType::SUCCESS,"Password changed!!");
+    Notification::displayMessage("Password changed!!", messageType::SUCCESS);
     this->openCloseUser();
 
 }

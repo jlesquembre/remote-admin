@@ -14,6 +14,7 @@
 #include <Wt/WLineEdit>
 #include <string>
 
+/*
 namespace messageType
 {
 enum Enum
@@ -23,20 +24,21 @@ enum Enum
     WARNING
 };
 }
+*/
 
 class FtpUserController : public Wt::WContainerWidget
 {
 public:
     FtpUserController(Wt::WContainerWidget *parent = 0);
-    void showNotification(messageType::Enum, Wt::WString);
-    void hideNotification();
+//    void showNotification(messageType::Enum, Wt::WString);
+//    void hideNotification();
     void changeFtpPassword(std::string, std::string);
     void deleteFtpUser(std::string);
 private:
     LoginDB *logindb;
     AutofsController *_autofsc;
 
-    Wt::WText *notificationArea, *error;
+    Wt::WText /**notificationArea,*/ *error;
     Wt::WDialog *addFtpUSerDialog;
     Wt::WLineEdit *newFtpUser, *newFtpPass, *newFtpRepass;
     void showDialog();

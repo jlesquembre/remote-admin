@@ -206,9 +206,10 @@ void FtpUserController::addFtpUser()
     //std::cerr << "Copy file end"<<std::endl;
 
     //this->showNotification(messageType::SUCCESS, newFtpUser->text() + " was added!");
+    Notification::displayMessage(newFtpUser->text().toUTF8() + " was added!", messageType::SUCCESS);
     this->hideDialog();
 
-    Notification::displayMessage(newFtpUser->text().toUTF8() + " was added!", messageType::SUCCESS);
+
 
 
     //this->insertWidget(this->count()-1,new FtpUser(newFtpUser->text().toUTF8()));

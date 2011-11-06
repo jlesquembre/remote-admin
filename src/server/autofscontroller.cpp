@@ -114,9 +114,10 @@ void AutofsController::deleteEntry(std::string user)
             }
 
             //cout<<"!!!!!!"<< line.substr (14,user.size()) <<endl ;
-            int msize = 14 + user.size();  // "/home/virtual/" -> 14
+            const int pathSize = AppPaths::userVirtualHomePath.size();
+            int msize = pathSize + user.size();  // "/home/virtual/" -> 14
             if(msize < line.size())
-                if(line.compare(14,user.size(), user) != 0)
+                if(line.compare(pathSize,user.size(), user) != 0)
                     _outstream << line << endl;
 
         }

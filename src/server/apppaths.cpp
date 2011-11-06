@@ -38,6 +38,6 @@ const std::string AppPaths::autoMasterFile = "/etc/auto.master";
 const std::string AppPaths::autoUsersPath = "/etc/vsftpd/maps";
 const std::string AppPaths::ftpUserConfPath = "/etc/vsftpd/user_conf";
 const std::string AppPaths::ftpDBFile = "/etc/vsftpd/vsftpd_login.db";
-const std::string AppPaths::userVirtualHomePath = "/home/virtual";
+const std::string AppPaths::userVirtualHomePath = "/home/.virtual";
 const std::string AppPaths::ftpUserDefaultConfFile = "/usr/share/remoteadmin/ftpuser.conf.default";
 const std::string AppPaths::cssFile = "style.css";

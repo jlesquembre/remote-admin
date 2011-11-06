@@ -208,7 +208,7 @@ void FtpUserController::addFtpUser()
     //this->showNotification(messageType::SUCCESS, newFtpUser->text() + " was added!");
     this->hideDialog();
 
-    Notification::displayMessage(newFtpUser->text() + " was added!", messageType::SUCCESS);
+    Notification::displayMessage(newFtpUser->text().toUTF8() + " was added!", messageType::SUCCESS);
 
 
     //this->insertWidget(this->count()-1,new FtpUser(newFtpUser->text().toUTF8()));

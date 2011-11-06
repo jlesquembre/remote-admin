@@ -1,5 +1,7 @@
 #include "logindb.h"
 #include "apppaths.h"
+#include "../services/daemonsmanager.h"
+
 #include <db_cxx.h>
 #include <string>
 #include <vector>
@@ -135,6 +137,8 @@ void LoginDB::add(string key, string value)
 
     LoginDB::closeDb();
 
+    DaemonsManager::reloadVsftpd();
+
 }
 
 void LoginDB::del(string str)
@@ -171,6 +175,8 @@ void LoginDB::del(string str)
 
 
     closeDb();
+
+    DaemonsManager::reloadVsftpd();
 
 }
 

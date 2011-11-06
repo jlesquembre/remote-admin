@@ -4,7 +4,6 @@
 #include "../server/logindb.h"
 #include "../server/apppaths.h"
 #include "../services/notification.h"
-#include "../services/daemonsmanager.h"
 
 #include <Wt/WApplication>
 #include <Wt/WPushButton>
@@ -210,7 +209,6 @@ void FtpUserController::addFtpUser()
     this->hideDialog();
 
     Notification::displayMessage(newFtpUser->text() + " was added!", messageType::SUCCESS);
-    DaemonsManager::reloadVsftpd();
 
 
     //this->insertWidget(this->count()-1,new FtpUser(newFtpUser->text().toUTF8()));

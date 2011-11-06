@@ -41,7 +41,7 @@ add_executable(remoteadmin src/server/apppaths.cpp src/server/optionmap.cpp src/
                            src/server/treenodefolder.cpp src/client/MainPage.cpp src/server/WriteConf.cpp src/server/logindb.cpp
                            src/client/ftpuser.cpp src/client/ftpusercontroller.cpp
                            src/widgets/tabwidget.cpp
-                           src/services/notification.cpp)
+                           src/services/notification.cpp src/services/daemonsmanager.cpp)
 
 
 TARGET_LINK_LIBRARIES(remoteadmin ${WT_LIBS})

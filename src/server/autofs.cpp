@@ -1,5 +1,6 @@
 #include "autofs.h"
 #include "apppaths.h"
+#include "../services/daemonsmanager.h"
 
 #include <string>
 #include <vector>
@@ -89,6 +90,8 @@ void AutoFs::addFolder(std::string folder, bool writable)
 
     }
 
+    DaemonsManager::reloadAutofs();
+
 }
 
 void AutoFs::removeFolder(std::string folder)
@@ -122,6 +125,8 @@ void AutoFs::removeFolder(std::string folder)
     rename(tmp.c_str(), _autoFile.c_str());
 
     _folders.erase(folder);
+
+    DaemonsManager::reloadAutofs();
 
 }
 

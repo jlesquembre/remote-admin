@@ -4,6 +4,7 @@
 #include "../server/logindb.h"
 #include "../server/apppaths.h"
 #include "../services/notification.h"
+#include "../services/daemonsmanager.h"
 
 #include <Wt/WApplication>
 #include <Wt/WPushButton>
@@ -206,9 +207,11 @@ void FtpUserController::addFtpUser()
     //std::cerr << "Copy file end"<<std::endl;
 
     //this->showNotification(messageType::SUCCESS, newFtpUser->text() + " was added!");
-    Notification::displayMessage(newFtpUser->text() + " was added!", messageType::SUCCESS);
-
     this->hideDialog();
+
+    Notification::displayMessage(newFtpUser->text() + " was added!", messageType::SUCCESS);
+    DaemonsManager::reloadVsftpd();
+
 
     //this->insertWidget(this->count()-1,new FtpUser(newFtpUser->text().toUTF8()));
 

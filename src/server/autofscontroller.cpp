@@ -1,5 +1,6 @@
 #include "autofscontroller.h"
 #include "apppaths.h"
+#include "../services/daemonsmanager.h"
 
 #include <iostream>
 #include <fstream>
@@ -94,6 +95,8 @@ void AutofsController::addEntry(std::string user)
                << " --ghost"<<endl;
     this->endParse();
 
+    DaemonsManager::reloadAutofs();
+
 }
 
 void AutofsController::deleteEntry(std::string user)
@@ -119,5 +122,7 @@ void AutofsController::deleteEntry(std::string user)
         }
 
     this->endParse();
+
+    DaemonsManager::reloadAutofs();
 
 }

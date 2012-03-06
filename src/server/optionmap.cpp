@@ -22,38 +22,6 @@ OptionMap::OptionMap(string path)
         this->read(path);
 
 
-    /*
-    ifstream stream(path.c_str(), ifstream::in);
-
-    const char comment = stream.widen('#');
-    string line;
-    while(stream.good())
-        {
-            getline(stream, line);
-            if(!line.empty())
-                {
-                    if(line[0] == comment || line[0] == ' ' || line[0] == '\t')
-                        {
-                            // do nothing
-                        }
-                    else
-                        {
-                            int eqpos = line.find('=');
-                            string key = line.substr(0, eqpos);
-                            string data = line.substr(eqpos + 1, line.npos);
-
-                            container[key] = data;
-
-
-                        }
-                }
-
-        }
-
-
-
-    //fb.close();
-    stream.close();*/
 
 }
 

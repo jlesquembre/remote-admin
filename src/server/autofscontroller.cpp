@@ -24,13 +24,10 @@ AutofsController::AutofsController()
     string line;
     while(stream.good())
         {
-            getline(stream, line);
-            //outstream << line << endl;
+            getline(stream, line);            
 
             if(line.compare(startSection) == 0 )
-            {
-                //contains = true;
-                //stream.setstate(ios::eofbit);
+            {                
                 stream.close();
 
             }
@@ -42,15 +39,7 @@ AutofsController::AutofsController()
         stream.clear();
         stream << startSection << endl <<  endSection << endl;
         stream.close();
-    }
-
-    //stream.seekp(0,ios::beg);
-
-
-    //instream.close();
-    //outstream.close();
-
-    //rename(tempFile.c_str(), AppPaths::autoMasterPath.c_str());
+    }    
 
 }
 
@@ -111,9 +100,7 @@ void AutofsController::deleteEntry(std::string user)
             {
                 _outstream << line << endl;
                 break;
-            }
-
-            //cout<<"!!!!!!"<< line.substr (14,user.size()) <<endl ;
+            }            
             const int pathSize = AppPaths::userVirtualHomePath.size();
             int msize = pathSize + user.size();  // "/home/virtual/" -> 14
             if(msize < line.size())

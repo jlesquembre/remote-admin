@@ -27,6 +27,7 @@ public:
         void modifyEntry();
         void show();
         void hide();
+        void setMainPage();
 
 
 
@@ -41,9 +42,6 @@ private:
 	WriteConf wc;
         void test();
 
-
-
-  //void greet();
 };
 
 #endif /* MAINPAGE_H_ */

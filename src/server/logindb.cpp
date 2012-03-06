@@ -144,30 +144,6 @@ void LoginDB::add(string key, string value)
 void LoginDB::del(string str)
 {
     openDb();
-/*
-    Dbc *cursorp;
-    Dbt key, data;
-    int ret;
-    string name;
-
-    // Get a cursor
-    db->cursor(NULL, &cursorp, 0);
-
-    // Iterate over the database, retrieving each record in turn.
-    while ((ret = cursorp->get(&key, &data, DB_NEXT)) == 0)
-        {
-            char* tmp = static_cast<char*> (key.get_data());
-            name.resize(key.get_size());
-            copy(tmp, tmp+key.get_size(), name.begin());
-
-            if(name==str)
-                cursorp->del(0);
-        }
-
-    if (cursorp != NULL)
-        cursorp->close();
-
-    */
 
     Dbt key(const_cast<char*> (str.data()), str.size());
 

@@ -81,15 +81,7 @@ void TreeNodeFolder::test(WCheckBox *b)
 TreeNodeFolder::TreeNodeFolder(const boost::filesystem::path& path)
     : WTreeNode(path.leaf() /*, createIcon(path)*/), _path(path)
 {
-    /*label()->setTextFormat(PlainText);
 
-    this->addStyleClass("treenodefolder");
-    this->setLoadPolicy(WTreeNode::NextLevelLoading);
-
-    this->computeVisibility();
-
-
-    this->setNodeVisible(_visible);*/
 
 
     TreeNodeFolder(path,false);
@@ -99,59 +91,13 @@ TreeNodeFolder::TreeNodeFolder(const boost::filesystem::path& path)
 
 
 
-    //std::cout << "Path: "<<path << std::endl;
 
-    //if(path.leaf().compare("aa") == 0)
-    //    this->setNodeVisible(false);
-
-    /* if(this->hasParent())
-    {
-        if(this->parentNode()->label()->text().toUTF8().compare("/") == 0)
-        {
-            if(path.leaf().compare("mnt") != 0 && path.leaf().compare("home") != 0)
-            {
-                this->setNodeVisible(false);
-            }
-        }
-
-    }*/
-
-    //    if (path.string().compare("/home") == 0 )
-    //    {
-
-    //    }
-
-
-    /* if (boost::filesystem::exists(path)) {
-        if (!boost::filesystem::is_directory(path)) {
-            //int fsize = (int)boost::filesystem::file_size(path);
-            //setColumnWidget(1, new WText(boost::lexical_cast<std::string>(fsize)));
-            //columnWidget(1)->setStyleClass("fsize");
-        } else
-            setSelectable(true);
-
-        std::time_t t = boost::filesystem::last_write_time(path);
-        struct tm ttm;
-
-        localtime_r(&t, &ttm);
-        char c[100];
-        strftime(c, 100, "%b %d %Y", &ttm);*/
-    //setColumnWidget(2, new WText(c));
-    //columnWidget(2)->setStyleClass("date");
-    //}
 }
 /**
-  Check if is posible hide de node, and set this boolean
+  Check if is posible hide the node, and set this boolean
   */
 bool TreeNodeFolder::computeVisibility()
 {
-    //    if(_path.root_path().string().compare("/home") == 0 || _path.root_path().string().compare("/") ==0 )
-    //    {
-    //        _hiddable == false;
-    //        std::cout << "----  " << _path << std::endl;
-    //    }
-    //    else
-    //        _hiddable == true;
 
 
     std::cout << "SSTritg:  " << _path.string() << std::endl;
@@ -174,16 +120,7 @@ bool TreeNodeFolder::visible()
     return _visible;
 }
 
-/*WIconPair *TreeNodeFolder::createIcon(const boost::filesystem::path& path)
-{
-    if (boost::filesystem::exists(path)
-            && boost::filesystem::is_directory(path))
-        return new WIconPair("icons/yellow-folder-closed.png",
-                             "icons/yellow-folder-open.png", false);
-    else
-        return new WIconPair("icons/document.png",
-                             "icons/yellow-folder-open.png", false);
-}*/
+
 void TreeNodeFolder::populate()
 {
     try {
